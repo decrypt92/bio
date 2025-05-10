@@ -1,12 +1,183 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your king bio :D</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      color: white;
+      background: #000;
+    }
+
+    /* Фоновое видео */
+    #video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    /* Центральная карточка (увеличена по высоте) */
+    .card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      height: 300px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .nickname {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      font-weight: 500;
+    }
+
+    /* Контейнер для аватарки и иконок */
+    .profile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    /* Круглая аватарка с зеленой точкой (онлайн) */
+    .avatar {
+      position: relative;
+      width: 80px;
+      height: 80px;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #5865F2;
+    }
+
+    .online-dot {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      width: 15px;
+      height: 15px;
+      background: #3BA55C;
+      border-radius: 50%;
+      border: 2px solid #2F3136;
+    }
+
+    /* Блок с иконками соцсетей */
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .socials a {
+      display: inline-block;
+      transition: transform 0.3s;
+    }
+
+    .socials a:hover {
+      transform: scale(1.1);
+    }
+
+    .socials img {
+      width: 50px;
+      height: 50px;
+    }
+
+    /* Счетчик просмотров внутри коробки */
+    .views-container {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 8px 15px;
+      border-radius: 20px;
+    }
+
+    .views-container img {
+      width: 30px;
+      height: 30px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Добро пожаловать на мой сайт!</h1>
-    <p>Это мой первый сайт на GitHub Pages.</p>
+  <!-- Фоновое видео -->
+  <video id="video-bg" autoplay muted loop playsinline>
+    <source src="video.mp4" type="video/mp4">
+  </video>
+
+  <!-- Карточка с контентом -->
+  <div class="card">
+    <div class="nickname">What's</div>
+    
+    <!-- Блок с аватаркой и статусом -->
+    <div class="profile">
+      <div class="avatar">
+        <img src="avatar.png" alt="Avatar">
+        <div class="online-dot"></div>
+      </div>
+    </div>
+
+    <!-- Иконки соцсетей -->
+    <div class="socials">
+      <a href="https://t.me/Ethernet123" target="_blank">
+        <img src="telegram.png" alt="Telegram">
+      </a>
+      <a href="https://discord.com/users/1315127860062589021" target="_blank">
+        <img src="discord.png" alt="Discord">
+      </a>
+    </div>
+
+    <!-- Счетчик просмотров -->
+    <div class="views-container">
+      <span id="views">0</span>
+      <img src="view.png" alt="Views">
+    </div>
+  </div>
+
+  <script>
+    // Счетчик посещений
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!localStorage.getItem('visited')) {
+        let views = localStorage.getItem('views') || 0;
+        views = parseInt(views) + 1;
+        localStorage.setItem('views', views);
+        localStorage.setItem('visited', 'true');
+        document.getElementById('views').textContent = views;
+      } else {
+        document.getElementById('views').textContent = localStorage.getItem('views');
+      }
+    });
+  </script>
 </body>
 </html>
